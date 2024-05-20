@@ -9,7 +9,7 @@ def filter_sequences(fasta_file, output_file):
             sequence_length = len(record.seq)
 
             # Check if the sequence length is within the desired range
-            if 100 <= sequence_length <= 1500:
+            if 100 <= sequence_length <= 15000:
                 # Write the record to the output file
                 SeqIO.write(record, out_fasta, "fasta")
 

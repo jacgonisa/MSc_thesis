@@ -1,6 +1,5 @@
 #!/bin/bash
 #SBATCH -N 1
-#SBATCH -n 1
 #SBATCH --mem=100GB
 
 #SBATCH -t 01-00:00
@@ -13,7 +12,7 @@
 KO_CODE="$1"
 
 # Create directory structure
-mkdir -p "$KO_CODE/04-trees/annotation_alignment_taxa_kegg"
+mkdir -p "$KO_CODE/04-trees/annotation_alignment_taxa_SSN" "$KO_CODE/04-trees/annotation_alignment_taxa_SSN_emapper"
 
 
 # Step 1: Create KEGG similarity
@@ -23,4 +22,13 @@ cut -f1,3,13,14 "$KO_CODE/01-KO2GTDB/"$KO_CODE"_matches.tsv" >> "$KO_CODE/01-KO2
 
 
 # Step 1: Annotate tree
-srun treeprofiler annotate --tree $KO_CODE/04-trees/"$KO_CODE"_GTDB_rooted.faa.alg.nw --input-type newick --alignment $KO_CODE/03-MSA/"$KO_CODE"_GTDB.faa.alg --taxonomic-profile --taxadb GTDB --taxon-column name --taxon-delimiter "_protein.faa_" --taxa-field 0 --metadata $KO_CODE/01-KO2GTDB/KEGG_sim_cov.tsv --emapper-annotations "$KO_CODE/02-GTDB2fasta/out.emapper.annotations" --emapper-pfam "$KO_CODE/02-GTDB2fasta/out.emapper.pfam"  --outdir $KO_CODE/04-trees/annotation_alignment_taxa_kegg
+treeprofiler annotate --tree $KO_CODE/04-trees/"$KO_CODE"_GTDB_rooted.faa.alg.nw --alignment $KO_CODE/03-MSA/"$KO_CODE"_GTDB.faa.alg --input-type newick --metadata "$KO_CODE/05-SSN/"$KO_CODE"_allvsall.clean.net.clusters.tsv" $KO_CODE/01-KO2GTDB/KEGG_sim_cov.tsv  --outdir $KO_CODE/04-trees/annotation_alignment_taxa_SSN --taxadb GTDB --taxon-column name --taxon-delimiter "_protein.faa_" --taxa-field 0
+
+wait
+
+treeprofiler annotate --tree $KO_CODE/04-trees/annotation_alignment_taxa_SSN/"$KO_CODE"_GTDB_rooted.faa.alg_annotated.nw --input-type newick --emapper-annotations "$KO_CODE/02-GTDB2fasta/out.emapper.annotations" --emapper-pfam "$KO_CODE/02-GTDB2fasta/out.emapper.pfam"  --outdir $KO_CODE/04-trees/annotation_alignment_taxa_SSN_emapper 
+
+#$KO_CODE/01-KO2GTDB/KEGG_sim_cov.tsv 
+#  --metadata "$KO_CODE/05-SSN/"$KO_CODE"_allvsall.clean.net.clusters.tsv"  --emapper-annotations "$KO_CODE/02-GTDB2fasta/out.emapper.annotations" --emapper-pfam "$KO_CODE/02-GTDB2fasta/out.emapper.pfam" 
+# --alignment $KO_CODE/03-MSA/"$KO_CODE"_GTDB.faa.alg 
+# treeprofiler annotate --tree annotation_alignment_taxa_emapper_SSN/K21104_GTDB_rooted.faa.alg_annotated.nw --input-type newick --metadata ../05-SSN/TMalign_results_clean.clean.clusters.tsv --outdir annotation_alignment_taxa_emapper_SSN_StrSN 
