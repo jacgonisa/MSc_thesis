@@ -9,11 +9,15 @@ KO_CODE="$1"
 mkdir -p "$KO_CODE/tmp"
 
 
+source ~/miniforge3/etc/profile.d/conda.sh
+
+conda activate diamond 
+
 #OUTPUT=$(basename -- $FILE)
 #OUTPUT="nets/${OUTPUT/.fasta/_allAgainstAll.similarities}"
 #DB="${FILE/.fasta/.db}"
 
-FASTA="$KO_CODE/02-GTDB2fasta/"$KO_CODE"_GTDB_sequences_filtered.faa"
+FASTA="$KO_CODE/02-GTDB2fasta/"$KO_CODE"_sequences_filtered.faa"
 DB="${FASTA}.db"
 OUTPUT="$KO_CODE/05-SSN/"$KO_CODE"_allvsall"
 
@@ -38,20 +42,20 @@ echo "SNN done"
 
 echo "Cleaning SNN"
 
-python /home/jacobg/01-GTDB/pipeline_KO-Tree/bin/clean_diamond.py -f $OUTPUT -o "${OUTPUT}.clean"
+python /home/jacobg/01-GTDB/pipeline_MetEOr/bin/clean_diamond.py -f $OUTPUT -o "${OUTPUT}.clean"
 
 wait
 
 echo "Build SNN"
 
-python /home/jacobg/01-GTDB/pipeline_KO-Tree/bin/build_network.py -f "${OUTPUT}.clean" -i "30" -c 50 -o "${OUTPUT}.clean.net"
+python /home/jacobg/01-GTDB/pipeline_MetEOr/bin/build_network.py -f "${OUTPUT}.clean" -i "30" -c 50 -o "${OUTPUT}.clean.net"
 
 wait
 
 echo "Annotate clusters"
 
 
-python /home/jacobg/01-GTDB/pipeline_KO-Tree/bin/identify_clusters_net.py "${OUTPUT}.clean.net" "${OUTPUT}.clean.net.clusters.tsv"
+python /home/jacobg/01-GTDB/pipeline_MetEOr/bin/identify_clusters_net.py "${OUTPUT}.clean.net" "${OUTPUT}.clean.net.clusters.tsv"
 
 wait
 

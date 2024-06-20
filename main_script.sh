@@ -6,7 +6,7 @@ function usage() {
 
 SYNOPSIS
 
-  main_script.sh [--min_identity MIN_IDENTITY] [--min_gtdb_seq_cov MIN_GTDB_SEQ_COV] [--min_gtdb_kegg_cov MIN_GTDB_KEGG_COV] KO_list_path
+  main_script.sh [--min_identity MIN_IDENTITY] [--min_gtdb_seq_cov MIN_GTDB_SEQ_COV] [--min_kegg_seq_cov MIN_KEGG_SEQ_COV] [--database DATABASE] KO_list_path
 
 DESCRIPTION
 
@@ -16,7 +16,8 @@ OPTIONS
 
   --min_identity          Minimum identity value (default: 20)
   --min_gtdb_seq_cov      Minimum GTDB sequence coverage (default: 20)
-  --min_kegg_seq_cov     Minimum GTDB KEGG coverage (default: 20)
+  --min_kegg_seq_cov      Minimum KEGG sequence coverage (default: 20)
+  --database              Database to use (gtdb_database or combined_database, default: gtdb_database)
 
 AUTHOR
 
@@ -29,6 +30,8 @@ EOF
 min_similarity=20
 min_gtdb_coverage=20
 min_kegg_coverage=20
+database="gtdb"
+ANNOTATION="default"
 
 # Show help message if "help" argument is provided or no argument is provided
 if [[ "$1" == "help" || $# -eq 0 ]]; then
@@ -55,6 +58,16 @@ while [[ $# -gt 0 ]]; do
             shift # past argument
             shift # past value
             ;;
+        --database)
+            database="$2"
+            shift # past argument
+            shift # past value
+            ;;
+	--annotation)
+	    ANNOTATION="$2"
+	    shift
+	    shift
+	    ;;
         *)
             # Assuming the remaining argument is KO_list_path
             KO_list_path="$1"
@@ -88,7 +101,6 @@ num_KOs=$(cat "$KO_list_path" | wc -l)
 echo "There are $num_KOs KO IDs"
 echo ""
 
-
 source ~/miniforge3/etc/profile.d/conda.sh
 conda activate ete
 
@@ -100,28 +112,25 @@ mkdir -p logs
 
 # Define an array to store job IDs 
 KO2fasta_jobids=()
-
 SSN_jobids=()
-
 emapper_jobids=()
-
 treebuilder_jobids=()
-
 treeannotator_jobids=()
 
 # Loop through each KO ID in the list
 # Ensure the IFS is set to handle spaces in file paths correctly
 IFS=$'\n'
 while IFS= read -r KO_CODE; do
-source ~/miniforge3/etc/profile.d/conda.sh
-conda activate ete
+    source ~/miniforge3/etc/profile.d/conda.sh
+    conda activate ete
 
     # Submit KO2fasta job for the current KO code
-    #KO2fasta_jobid=$(sbatch --output="./logs/KO2fasta_"$KO_CODE"_%j.out" --error="./logs/KO2fasta_"$KO_CODE"_%j.err" /home/jacobg/01-GTDB/pipeline_KO-Tree/bin/KO2fasta.slurm "$KO_CODE")
     KO2fasta_jobid=$(sbatch --output="./logs/KO2fasta_${KO_CODE}_%j.out" \
                         --error="./logs/KO2fasta_${KO_CODE}_%j.err" \
-                        --export=KO_CODE="$KO_CODE",min_similarity="$min_similarity",min_gtdb_coverage="$min_gtdb_coverage",min_kegg_coverage="$min_kegg_coverage" \
-                        /home/jacobg/01-GTDB/pipeline_KO-Tree/bin/KO2fasta.slurm)
+                        --export=KO_CODE="$KO_CODE",min_similarity="$min_similarity",min_gtdb_coverage="$min_gtdb_coverage",min_kegg_coverage="$min_kegg_coverage",database="$database" \
+                        /home/jacobg/01-GTDB/pipeline_MetEOr/bin/KO2fasta.slurm)
+    # Submit KO2fasta job for the current KO code
+    #KO2fasta_jobid=$(sbatch --output="./logs/KO2fasta_"$KO_CODE"_%j.out" --error="./logs/KO2fasta_"$KO_CODE"_%j.err" /home/jacobg/01-GTDB/pipeline_KO-Tree/bin/KO2fasta.slurm "$KO_CODE")
  
     KO2fasta_jobid=${KO2fasta_jobid##* }
 
@@ -137,7 +146,7 @@ source ~/miniforge3/etc/profile.d/conda.sh
 conda activate diamond
 
     # Submit KO2fasta job for the current KO code
-    SSN_jobid=$(sbatch --dependency=afterok:"$KO2fasta_jobid" --output="./logs/SNN_"$KO_CODE"_%j.out" --error="./logs/SNN_"$KO_CODE"_%j.err" /home/jacobg/01-GTDB/pipeline_KO-Tree/bin/SSN.slurm "$KO_CODE")
+    SSN_jobid=$(sbatch --dependency=afterok:"$KO2fasta_jobid" --output="./logs/SNN_"$KO_CODE"_%j.out" --error="./logs/SNN_"$KO_CODE"_%j.err" /home/jacobg/01-GTDB/pipeline_MetEOr/bin/SSN.slurm "$KO_CODE")
     
     SSN_jobid=${SSN_jobid##* }
 
@@ -155,7 +164,7 @@ source ~/miniforge3/etc/profile.d/conda.sh
 conda activate emap
 
     #Submit eggnogmapper job
-    emapper_jobid=$(sbatch --dependency=afterok:"$KO2fasta_jobid" --output="./logs/emapper_"$KO_CODE"_%j.out" --error="./logs/emapper_"$KO_CODE"_%j.err" /home/jacobg/01-GTDB/pipeline_KO-Tree/bin/emapper.slurm "$KO_CODE")
+    emapper_jobid=$(sbatch --dependency=afterok:"$KO2fasta_jobid" --output="./logs/emapper_"$KO_CODE"_%j.out" --error="./logs/emapper_"$KO_CODE"_%j.err" /home/jacobg/01-GTDB/pipeline_MetEOr/bin/emapper.slurm "$KO_CODE" "$ANNOTATION")
 #    
     emapper_jobid=${emapper_jobid##* }
 
@@ -171,7 +180,7 @@ source ~/miniforge3/etc/profile.d/conda.sh
 conda activate ete
 
     # Submit treebuilder job
-    treebuilder_jobid=$(sbatch --dependency=afterok:"$KO2fasta_jobid" --output="./logs/treebuilder_"$KO_CODE"_%j.out" --error="./logs/treebuilder_"$KO_CODE"_%j.err" /home/jacobg/01-GTDB/pipeline_KO-Tree/bin/treebuilder.slurm "$KO_CODE")
+    treebuilder_jobid=$(sbatch --dependency=afterok:"$KO2fasta_jobid" --output="./logs/treebuilder_"$KO_CODE"_%j.out" --error="./logs/treebuilder_"$KO_CODE"_%j.err" /home/jacobg/01-GTDB/pipeline_MetEOr/bin/treebuilder.slurm "$KO_CODE")
 #    
     treebuilder_jobid=${treebuilder_jobid##* }
 
@@ -185,8 +194,8 @@ conda activate ete
 
 
     # Submit treeannotator job with dependency on treebuilder job
-    #treeannotator_jobid=$(sbatch --output="./logs/treeannotator_"$KO_CODE"_%j.out" --error="./logs/treeannotator_"$KO_CODE"_%j.err" --dependency=afterok:"$treebuilder_jobid:$emapper_jobid:$SSN_jobid" /home/jacobg/01-GTDB/pipeline_KO-Tree/bin/treeannotator.slurm "$KO_CODE")
-    treeannotator_jobid=$(sbatch --output="./logs/treeannotator_${KO_CODE}_%j.out" --error="./logs/treeannotator_${KO_CODE}_%j.err" --dependency=afterok:"${treebuilder_jobid}:${emapper_jobid}:${SSN_jobid}" /home/jacobg/01-GTDB/pipeline_KO-Tree/bin/treeannotator.slurm "${KO_CODE}")
+    #treeannotator_jobid=$(sbatch --output="./logs/treeannotator_"$KO_CODE"_%j.out" --error="./logs/treeannotator_"$KO_CODE"_%j.err" --dependency=afterok:"$treebuilder_jobid:$emapper_jobid:$SSN_jobid" /home/jacobg/01-GTDB/pipeline_MetEOr/bin/treeannotator.slurm "$KO_CODE")
+    treeannotator_jobid=$(sbatch --output="./logs/treeannotator_${KO_CODE}_%j.out" --error="./logs/treeannotator_${KO_CODE}_%j.err" --dependency=afterok:"${treebuilder_jobid}:${emapper_jobid}:${SSN_jobid}" /home/jacobg/01-GTDB/pipeline_MetEOr/bin/treeannotator.slurm "${KO_CODE}" "${database}")
 
     treeannotator_jobid=${treeannotator_jobid##* }
 
