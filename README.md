@@ -1,2 +1,4 @@
-# MSc_thesis
-Ongoing (I will be developing my pipeline and uploading all my methods)
+# MetEOr (Metagenomic-driven Enzymatic Ortholog discovery)
+Still under development -> ongoing work to implement in Singularity or using Nextflow
+
+![](MetEOr_logo.png)
