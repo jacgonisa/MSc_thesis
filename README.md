@@ -13,6 +13,9 @@ MetEOr is an innovative pipeline for discovering enzymatic orthologs using metag
 - Integration with KEGG Orthology (KO) database
 
 ## 📁 Repository Structure
+- `emap_env.yml`: Conda environment file for eggNOG-mapper dependencies.
+- `ete_diamond_env.yml`: Conda environment file for ETE Toolkit and DIAMOND dependencies.
+- `KOs_ids.txt`: Input file containing KEGG Orthology (KO) identifiers for analysis.
 - `main_script.py`: The primary Python script for the pipeline.
 - `bin/`:
   SLURM scripts for job submission in a cluster environment:
