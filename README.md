@@ -50,31 +50,32 @@ We give below some initial instructions.
 Before you begin, ensure you have the following:
 
 - Python 3.7+
-- SLURM on an HPC (High Performance Computing) cluster to run the program
+- SLURM on an HPC (High-Performance Computing) cluster to run the program
 - Miniconda (for managing environments)
 
 If you don't have Miniconda installed, follow these steps:
 
+- Download Miniconda installer
 ```bash
-# Download Miniconda installer
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 ```
-Make the installer executable
+
+- Make the installer executable
 ```
 chmod +x Miniconda3-latest-Linux-x86_64.sh
 ```
 
-Run the installer
+- Run the installer
 ```
 ./Miniconda3-latest-Linux-x86_64.sh
 ```
 
-Restart your terminal or run:
+- Restart your terminal or run:
 ```
 source ~/.bashrc
 ```
 
-# Install mamba for faster environment solving
+- Install mamba for faster environment solving
 ```
 conda install mamba -n base -c conda-forge
 ```
