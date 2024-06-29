@@ -8,7 +8,7 @@ def usage():
     print("""
 SYNOPSIS
 
-  main_script.py [--min_identity MIN_IDENTITY] [--min_gtdb_seq_cov MIN_GTDB_SEQ_COV] [--min_kegg_seq_cov MIN_KEGG_SEQ_COV] [--database DATABASE] [--annotation ANNOTATION] KO_list_path
+  main_script.py [--min_identity MIN_IDENTITY] [--min_seq_cov MIN_GTDB_SEQ_COV] [--min_kegg_seq_cov MIN_KEGG_SEQ_COV] [--database DATABASE] [--annotation ANNOTATION] KO_list_path
 
 DESCRIPTION
 
