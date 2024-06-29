@@ -1,46 +1,52 @@
-# MetEOr (Metagenomic-driven Enzymatic Ortholog discovery)
+# MetEOr: Metagenomic-driven Enzymatic Ortholog discovery
 
-MetEOr is an ongoing project aimed at developing a pipeline for discovering enzymatic orthologs using metagenomic data. This pipeline is being developed as part of a Master's thesis and will be shared and implemented using Singularity or Nextflow.
+![MetEOr Logo](MetEOr_logo.png)
 
-![](MetEOr_logo.png)
+MetEOr is an innovative pipeline for discovering enzymatic orthologs using metagenomic data. Developed as part of a Master's thesis, this project aims to streamline the identification and analysis of enzymatic orthologs from complex metagenomic datasets.
 
-## Overview
+## 🚀 Features
 
-The MetEOr pipeline will streamline the process of identifying and analyzing enzymatic orthologs from metagenomic datasets. The project is currently in development, and this repository will be updated with new methods and scripts as they are developed.
+- Automated processing of metagenomic data
+- Identification of enzymatic orthologs
+- Network-based analysis of enzyme relationships
+- Phylogenetic tree construction and annotation
+- Integration with KEGG Orthology (KO) database
 
 
-## Repository Structure
+## 🛠️ Installation
 
-- `main_script.py`: The primary Python script for the pipeline.
-- `main_script.sh`: A shell script that complements the main Python script.
-- `bin/`: Contains auxiliary scripts used in the pipeline.
-  - `script1.py`: Description of what script1.py does.
-  - `script2.sh`: Description of what script2.sh does.
-  - `script3.pl`: Description of what script3.pl does.
-- `logo.png`: Project logo.
-- `README.md`: Project documentation (this file).
-- `LICENSE`: License information for the repository.
+MetEOr is designed to be run in an HPC cluster. Detailed installation instructions will be provided as the project progresses. We plan to implement it in Nextflow or distribute it via a Singularity container.
 
-## Installation
+### Prerequisites
 
-To use MetEOr, you need to have Python and Singularity or Nextflow installed. Detailed installation instructions will be provided as the project progresses.
+- Python 3.7+
+- SLURM in HPC (High Performance Computing) cluster to run the programme.
 
-## Usage
+## 📘 Usage
 
-Detailed usage instructions and examples will be provided as the project progresses.
+Comprehensive usage instructions and examples will be added as the project develops. The pipeline will be designed for ease of use in both local and cluster environments.
 
-## Contributing
+## 🤝 Contributing
 
-Contributions are welcome! Please fork the repository and create a pull request with your changes. Ensure that your code adheres to the project's coding standards and includes appropriate tests.
+We welcome contributions to MetEOr! Here's how you can help:
 
-## License
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
 
-## Contact
+## 📄 License
 
-For any questions or suggestions, please contact [jacgonisa](https://github.com/jacgonisa).
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## 📞 Contact
+
+For questions, suggestions, or collaborations, please contact:
+
+[jacgonisa](https://github.com/jacgonisa)
 
 ---
 
-This repository is a work in progress. Please check back for updates.
+⚠️ **Note**: This project is under active development. Check back regularly for updates and new features!
