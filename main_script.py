@@ -17,7 +17,7 @@ DESCRIPTION
 OPTIONS
 
   --min_identity          Minimum identity value (default: 20)
-  --min_gtdb_seq_cov      Minimum GTDB sequence coverage (default: 20)
+  --min_seq_cov           Minimum retrieved sequence coverage (default: 20)
   --min_kegg_seq_cov      Minimum KEGG sequence coverage (default: 20)
   --database              Database to use (gtdb or combined, default: gtdb)
   --annotation            Annotation method to use (default or swissprot, default: default)
@@ -49,7 +49,7 @@ def main():
     parser = argparse.ArgumentParser(description='Process KO list and submit jobs.')
     parser.add_argument('KO_list_path', help='Path to the KO list file')
     parser.add_argument('--min_identity', type=int, default=20, help='Minimum identity value (default: 20)')
-    parser.add_argument('--min_gtdb_seq_cov', type=int, default=20, help='Minimum GTDB sequence coverage (default: 20)')
+    parser.add_argument('--min_seq_cov', type=int, default=20, help='Minimum retrieved sequence coverage (default: 20)')
     parser.add_argument('--min_kegg_seq_cov', type=int, default=20, help='Minimum KEGG sequence coverage (default: 20)')
     parser.add_argument('--database', default='gtdb', choices=['gtdb', 'combined'], help='Database to use (default: gtdb)')
     parser.add_argument('--annotation', default='default', choices=['default', 'swissprot'], help='Annotation method to use (default: default)')
@@ -90,7 +90,7 @@ def main():
             "sbatch",
             "--output", f"./logs/KO2fasta_{KO_CODE}_%j.out",
             "--error", f"./logs/KO2fasta_{KO_CODE}_%j.err",
-            "--export", f"KO_CODE={KO_CODE},min_similarity={args.min_identity},min_gtdb_coverage={args.min_gtdb_seq_cov},min_kegg_coverage={args.min_kegg_seq_cov},database={args.database}",
+            "--export", f"KO_CODE={KO_CODE},min_similarity={args.min_identity},min_coverage={args.min_seq_cov},min_kegg_coverage={args.min_kegg_seq_cov},database={args.database}",
             "/home/jacobg/01-GTDB/pipeline_MetEOr/bin/KO2fasta.slurm"
         ]
         KO2fasta_jobid = submit_job(KO2fasta_command)

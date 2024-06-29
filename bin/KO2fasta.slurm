@@ -19,7 +19,7 @@ conda activate ete
 mkdir -p "$KO_CODE/01-KO2GTDB" "$KO_CODE/02-GTDB2fasta" "$KO_CODE/03-MSA" "$KO_CODE/04-trees" "$KO_CODE/05-SSN"
 
 # Step 1: Run get_gtdb.py script
-python /home/jacobg/01-GTDB/pipeline_MetEOr/bin/get_seqs_by_ko_hit.py --db $database --evalue 1e-3 --identity $min_similarity --seq-cov $min_gtdb_coverage --kegg-seq-cov $min_kegg_coverage "$KO_CODE" > "$KO_CODE/01-KO2GTDB/"$KO_CODE"_matches.tsv"
+python /home/jacobg/01-GTDB/pipeline_MetEOr/bin/get_seqs_by_ko_hit.py --db $database --evalue 1e-3 --identity $min_similarity --seq-cov $min_coverage --kegg-seq-cov $min_kegg_coverage "$KO_CODE" > "$KO_CODE/01-KO2GTDB/"$KO_CODE"_matches.tsv"
 echo "$KO_CODE - Number of sequences:"
 echo "$(wc -l < "$KO_CODE/01-KO2GTDB/"$KO_CODE"_matches.tsv")"
 
