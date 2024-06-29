@@ -8,9 +8,6 @@ MetEOr is an ongoing project aimed at developing a pipeline for discovering enzy
 
 The MetEOr pipeline will streamline the process of identifying and analyzing enzymatic orthologs from metagenomic datasets. The project is currently in development, and this repository will be updated with new methods and scripts as they are developed.
 
-## Overview
-
-The MetEOr pipeline will streamline the process of identifying and analyzing enzymatic orthologs from metagenomic datasets. The project is currently in development, and this repository will be updated with new methods and scripts as they are developed.
 
 ## Repository Structure
 
