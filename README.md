@@ -40,7 +40,7 @@ MetEOr is an innovative pipeline for discovering enzymatic orthologs using metag
   - `threshold_algorithm.py`: Implements algorithms with specified thresholds.
   - `trim_alignment.py`: Trims sequence alignments.
 
-## 🛠️ Installation and usage
+## 🛠️ Installation
 
 MetEOr is designed to be run in an HPC cluster. Detailed installation instructions will be provided as the project progresses. We plan to implement it in Nextflow or distribute it via a Singularity container.
 We give below some initial instructions.
@@ -88,12 +88,13 @@ cd MSc_thesis
 ```
 
 ### 2. Set Up Conda Environments
+- Create and activate the EggNOG-mapper environment
 ```
-# Create and activate the EggNOG-mapper environment
 mamba env create -f emap_env.yml
-conda activate emap_env
+```
 
-# Create the ETE Toolkit and DIAMOND environment
+- Create the ETE Toolkit and DIAMOND environment
+```
 mamba env create -f ete_diamond_env.yml
 ```
 
