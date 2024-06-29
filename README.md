@@ -24,7 +24,7 @@ MetEOr is an innovative pipeline for discovering enzymatic orthologs using metag
   - `treebuilder.slurm`: Step 2 - Build tree and identify candidate enzymes
   - `SSN.slurm`: Step 3 - Build 	Sequence Similarity Networks (SSN)
   - `emapper.slurm`: Step 4 - Functional annotation of sequences
-  - `treeannotator.slurm` -: Step 5 - Tree annotation
+  - `treeannotator.slurm`: Step 5 - Tree annotation
     
   Python scripts launched dependent on SLURM scripts:
 
