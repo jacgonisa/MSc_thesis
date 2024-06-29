@@ -112,13 +112,13 @@ python main_script.py --min_identity 30 --min_gtdb_seq_cov 30 --min_kegg_seq_cov
 
 - `--min_identity`: Specifies the minimum identity value for sequence similarity. In this example, it is set to `30`. This value determines how similar sequences must be to be retrieved.
 
-`--min_gtdb_seq_cov`: Sets the minimum sequence coverage from GTDB (Genome Taxonomy Database). It is also set to `30` in this example. Sequence coverage indicates how much of the target sequence is covered by the query sequence.
+- `--min_gtdb_seq_cov`: Sets the minimum sequence coverage from GTDB (Genome Taxonomy Database). It is also set to `30` in this example. Sequence coverage indicates how much of the target sequence is covered by the query sequence.
 
-`--min_kegg_seq_cov`: Defines the minimum sequence coverage from KEGG (Kyoto Encyclopedia of Genes and Genomes). Similar to the other metrics, it is set to `30`. 
+- `--min_kegg_seq_cov`: Defines the minimum sequence coverage from KEGG (Kyoto Encyclopedia of Genes and Genomes). Similar to the other metrics, it is set to `30`. 
 
-`--database`: Specifies which database to use for analysis. In this case, `combined` is chosen, indicating a combination or integration of data from GTDB and metagenomic databases. Alternatively, `gtdb` can be specified to use only GTDB data.
+- `--database`: Specifies which database to use for analysis. In this case, `combined` is chosen, indicating a combination or integration of data from GTDB and metagenomic databases. Alternatively, `gtdb` can be specified to use only GTDB data.
 
-`--annotation`: Defines the annotation method to use during the analysis. Here, `swissprot` is selected, indicating the use of annotations from the Swiss-Prot database. Alternatively, `default` annotations may be applied and would only include eggNOG-mapper annotations.
+- `--annotation`: Defines the annotation method to use during the analysis. Here, `swissprot` is selected, indicating the use of annotations from the Swiss-Prot database. Alternatively, `default` annotations may be applied and would only include eggNOG-mapper annotations.
 
 
 ## 🤝 Contributing
