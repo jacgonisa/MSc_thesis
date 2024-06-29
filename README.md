@@ -14,8 +14,7 @@ MetEOr is an innovative pipeline for discovering enzymatic orthologs using metag
 
 ## 📁 Repository Structure
 - `main_script.py`: The primary Python script for the pipeline.
-- `bin/`: Contains auxiliary scripts used in the pipeline.
-- 
+- `bin/`:
   SLURM scripts for job submission in a cluster environment:
 
   - `KO2fasta.slurm`: Step 1 - Retrieve homologous sequences
