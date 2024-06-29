@@ -99,7 +99,7 @@ def main():
         print(f"Submitted KO2fasta job for KO code: {KO_CODE}")
         print(f"Job ID: {KO2fasta_jobid}")
 
-        os.system('source ~/miniforge3/etc/profile.d/conda.sh && conda activate diamond')
+        os.system('source ~/miniforge3/etc/profile.d/conda.sh && conda activate ete')
 
         SSN_command = [
             "sbatch",
@@ -164,5 +164,4 @@ def main():
         print(f"Job ID: {treeannotator_jobid}")
 
 if __name__ == "__main__":
-    main()
-
+    ete
