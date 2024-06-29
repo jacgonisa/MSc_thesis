@@ -40,14 +40,62 @@ MetEOr is an innovative pipeline for discovering enzymatic orthologs using metag
   - `threshold_algorithm.py`: Implements algorithms with specified thresholds.
   - `trim_alignment.py`: Trims sequence alignments.
 
-## 🛠️ Installation
+## 🛠️ Installation and usage
 
 MetEOr is designed to be run in an HPC cluster. Detailed installation instructions will be provided as the project progresses. We plan to implement it in Nextflow or distribute it via a Singularity container.
+We give below some initial instructions.
 
-### Prerequisites
+### 0. Check Prerequisites
+
+Before you begin, ensure you have the following:
 
 - Python 3.7+
-- SLURM in HPC (High Performance Computing) cluster to run the programme.
+- SLURM on an HPC (High Performance Computing) cluster to run the program
+- Miniconda (for managing environments)
+
+If you don't have Miniconda installed, follow these steps:
+
+```bash
+# Download Miniconda installer
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+```
+Make the installer executable
+```
+chmod +x Miniconda3-latest-Linux-x86_64.sh
+```
+
+Run the installer
+```
+./Miniconda3-latest-Linux-x86_64.sh
+```
+
+Restart your terminal or run:
+```
+source ~/.bashrc
+```
+
+# Install mamba for faster environment solving
+```
+conda install mamba -n base -c conda-forge
+```
+ 
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/jacgonisa/MSc_thesis.git
+cd MSc_thesis
+```
+
+### 2. Set Up Conda Environments
+```
+# Create and activate the EggNOG-mapper environment
+mamba env create -f emap_env.yml
+conda activate emap_env
+
+# Create the ETE Toolkit and DIAMOND environment
+mamba env create -f ete_diamond_env.yml
+```
+
 
 ## 📘 Usage
 
