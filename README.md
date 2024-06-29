@@ -15,13 +15,17 @@ MetEOr is an innovative pipeline for discovering enzymatic orthologs using metag
 ## 📁 Repository Structure
 - `main_script.py`: The primary Python script for the pipeline.
 - `bin/`: Contains auxiliary scripts used in the pipeline.
+- 
   SLURM scripts for job submission in a cluster environment:
+  
   - `emapper.slurm`
   - `KO2fasta.slurm`
   - `SSN.slurm`
   - `treeannotator.slurm`
   - `treebuilder.slurm`
+  - 
   Python scripts launched dependent on SLURM scripts:
+
   - `build_network.py`: Builds a network for enzymatic ortholog analysis.
   - `build_network_structure.py`: Structures or extends the network built by `build_network.py`.
   - `clean_diamond.py`: Cleans up data using the Diamond tool.
