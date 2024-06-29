@@ -17,13 +17,13 @@ MetEOr is an innovative pipeline for discovering enzymatic orthologs using metag
 - `bin/`: Contains auxiliary scripts used in the pipeline.
 - 
   SLURM scripts for job submission in a cluster environment:
-  
-  - `emapper.slurm`
-  - `KO2fasta.slurm`
-  - `SSN.slurm`
-  - `treeannotator.slurm`
-  - `treebuilder.slurm`
-  - 
+
+  - `KO2fasta.slurm`: Step 1 - Retrieve homologous sequences
+  - `treebuilder.slurm`: Step 2 - Build tree and identify candidate enzymes
+  - `SSN.slurm`: Step 3 - Build 	Sequence Similarity Networks (SSN)
+  - `emapper.slurm`: Step 4 - Functional annotation of sequences
+  - `treeannotator.slurm` -: Step 5 - Tree annotation
+    
   Python scripts launched dependent on SLURM scripts:
 
   - `build_network.py`: Builds a network for enzymatic ortholog analysis.
