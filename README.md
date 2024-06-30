@@ -140,7 +140,9 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 For questions, suggestions, or collaborations, please contact:
 
-[jacgonisa](https://github.com/jacgonisa)
+- [jacgonisa](https://github.com/jacgonisa)
+- [X account - @JacobGIsa](https://x.com/JacobGIsa)
+- jacobgisa17@gmail.com
 
 ---
 
