@@ -2,7 +2,7 @@
 
 ![MetEOr](MetEOr_schema.png)
 
-MetEOr is an innovative pipeline for discovering enzymatic orthologs using metagenomic data. Developed as part of a Master's thesis, this project aims to streamline the identification and analysis of enzymatic orthologs from complex metagenomic datasets.
+MetEOr is an innovative pipeline for discovering enzymatic orthologs using metagenomic data. Developed as part of a Master's thesis, this project aims to streamline the identification and analysis of novel enzyme variants of biotechnological and ecological interest.
 
 ## 🚀 Features
 
