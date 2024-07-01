@@ -98,6 +98,10 @@ mamba env create -f emap_env.yml
 mamba env create -f ete_diamond_env.yml
 ```
 
+### 2. Download GTDB and/or COMBINED databases
+
+Further instructions on this will be shared.
+
 
 ## 📘 Usage
 
