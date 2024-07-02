@@ -111,7 +111,7 @@ Comprehensive usage instructions and examples will be added as the project devel
 To execute `main_script.py`, use the following command in your terminal:
 
 ```bash
-python main_script.py --min_identity 30 --min_gtdb_seq_cov 30 --min_kegg_seq_cov 30 --database combined --annotation swissprot KO_list.txt
+python main_script.py --min_identity 30 --min_seq_cov 30 --min_kegg_seq_cov 30 --database combined --annotation swissprot KO_list.txt
 ```
 
 - `--min_identity`: Specifies the minimum identity value for sequence similarity. In this example, it is set to `30`. This value determines how similar sequences must be to be retrieved.
