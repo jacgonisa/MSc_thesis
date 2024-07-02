@@ -125,6 +125,64 @@ python main_script.py --min_identity 30 --min_seq_cov 30 --min_kegg_seq_cov 30 -
 - `--annotation`: Defines the annotation method to use during the analysis. Here, `swissprot` is selected, indicating the use of annotations from the Swiss-Prot database. Alternatively, `default` annotations may be applied and would only include eggNOG-mapper annotations.
 
 
+## 🖨️ Output structure
+
+The pipeline generates the following directory structure for each KO code (e.g., K21105):
+
+K21105/
+├── 01-KO2GTDB/
+│   ├── K21105_matches_onlyIDs_combined.tsv
+│   ├── K21105_matches_onlyIDs_gtdb.tsv
+│   ├── K21105_matches_onlyIDs.tsv
+│   ├── K21105_matches.tsv
+│   └── KEGG_sim_cov.tsv
+├── 02-GTDB2fasta/
+│   ├── blastp_swissprot_filtered.txt
+│   ├── blastp_swissprot.txt
+│   ├── K21105_protein_length.tsv
+│   ├── K21105_sequences.faa
+│   ├── K21105_sequences_filtered.faa  (MSA IS BUILT BASED ON THIS FILE!)
+│   ├── K21105_sequences_filtered.faa.db.dmnd
+│   ├── K21105_sequences.fna
+│   ├── out.emapper.annotations
+│   ├── out.emapper.decorated.gff
+│   ├── out.emapper.hits
+│   ├── out.emapper.pfam
+│   └── out.emapper.seed_orthologs
+├── 03-MSA/
+│   ├── KO_code.faa.alg
+│   └── KO_code_trimmed.faa.alg
+├── 04-trees/
+│   ├── annotation_alignment_taxa_SSN/
+│   │   ├── K21105_rooted.faa.alg_annotated.ete (READY TO VISUALIZE!)
+│   │   ├── K21105_rooted.faa.alg_annotated.nw
+│   │   ├── K21105_rooted.faa.alg_annotated.tsv
+│   │   └── K21105_rooted.faa.alg_prop2type.txt
+│   ├── annotation_alignment_taxa_SSN_emapper/
+│   │   ├── K21105_rooted.faa.alg_annotated_annotated.ete (READY TO VISUALIZE!)
+│   │   ├── K21105_rooted.faa.alg_annotated_annotated.nw
+│   │   ├── K21105_rooted.faa.alg_annotated_annotated.tsv
+│   │   └── K21105_rooted.faa.alg_annotated_prop2type.txt
+│   ├── K21105.faa.alg.nw
+│   ├── K21105_rooted.faa.alg.nw
+│   └── KEGG_sim_cov.tsv
+├── 05-SSN/
+│   ├── K21105_allvsall
+│   ├── K21105_allvsall.clean
+│   ├── K21105_allvsall.clean.net
+│   ├── K21105_allvsall.clean.net.clusters.tmp
+│   └── K21105_allvsall.clean.net.clusters.tsv (METADA WITH SSN CLUSTERING INFORMATION!)
+└── threshold_analysis/
+    ├── candidate_genes.tsv (IMPORTANT OUTPUT!)
+    ├── dotplot.png
+    ├── heatmap.png
+    ├── K21105_rooted.faa.alg_leaf_names.txt
+    ├── K21105_surviving_columns.txt
+    ├── K21105_threshold_analysis.csv
+    ├── scatterplot_candidate_genes.png
+    ├── scatterplot.png
+    └── special_genes.tsv
+
 ## 🤝 Contributing
 
 We welcome contributions to MetEOr! Here's how you can help:
