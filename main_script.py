@@ -164,4 +164,4 @@ def main():
         print(f"Job ID: {treeannotator_jobid}")
 
 if __name__ == "__main__":
-    ete
+    main()
