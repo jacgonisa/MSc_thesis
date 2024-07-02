@@ -129,6 +129,7 @@ python main_script.py --min_identity 30 --min_seq_cov 30 --min_kegg_seq_cov 30 -
 
 The pipeline generates the following directory structure for each KO code (e.g., K21105):
 
+```
 K21105/
 ├── 01-KO2GTDB/
 │   ├── K21105_matches_onlyIDs_combined.tsv
@@ -182,6 +183,7 @@ K21105/
     ├── scatterplot_candidate_genes.png
     ├── scatterplot.png
     └── special_genes.tsv
+```
 
 ## 🤝 Contributing
 
